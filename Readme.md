@@ -3,9 +3,9 @@
 
 ## Нейминг
 
-:page_with_curl: Н1. Название переменных, параметров, свойств и методов начинается с заглавной буквы и записываются в нотации camelCase.
+:page_with_curl: Н1. Название переменных, параметров, свойств и методов записываются в нотации camelCase.
 
-:page_with_curl: Н2. Названия констант (постоянных значений) написаны заглавными буквами. Слова разделяются подчёркиваниями (UPPER_SNAKE_CASE):
+:page_with_curl: Н2. Названия констант (постоянных значений) записываются в нотации UPPER_SNAKE_CASE:
 ```jsx
 const MAX_HEIGHT = 400;
 const DEFAULT_TIME = 1000;
@@ -68,7 +68,7 @@ return (<MyComponent><MyComponent/>);
 :page_with_curl: С1. Чтение параметров из адресной строки проводится только через getServerSideProps:
 ```jsx
 export async function getServerSideProps(params) {
-    return {props: {...params.query}}
+  return {props: {...params.query}}
 }
 
 const MyPage = ({id}) => {
