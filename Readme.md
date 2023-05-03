@@ -1,7 +1,7 @@
 
 ### Нейминг
 
-1. Название переменных, параметров, свойств и методов начинается со строчной буквы и записываются в нотации camelCase.
+1. Название переменных, параметров, свойств и методов начинается с заглавной буквы и записываются в нотации camelCase.
 
 2. Названия констант (постоянных значений) написаны прописными (заглавными) буквами. Слова разделяются подчёркиваниями (UPPER_SNAKE_CASE):
 ```jsx
@@ -15,7 +15,7 @@ const frameworks = ['Next', 'Vue', 'JQuery'];
 const evenNumbers = [2, 10, 44];
 ```
 
-4. Название функции/метода должно быть глаголом и соответствовать действию, которое выполняет функция/метод. Исключвения - функции-обработчики/колбэки:
+4. Название функции должно быть глаголом и соответствовать действию, которое она выполняет. Исключения - функции-обработчики/колбэки:
 ```jsx
 const getRandomNumber = () => Math.random();
 const printNames = (names) => {
@@ -24,3 +24,26 @@ const printNames = (names) => {
   });
 };
 ```
+
+# ...
+# ...
+
+### Структура react-компонентов .tsx
+
+1. Порядок написания компонентов сверху-вниз: стейты -> store -> api-запросы -> остальная логика -> return ()
+```jsx
+// Стейты
+const [open, setOpen] = useState(false);
+const [isVisible, setIsVisible] = useState(true);
+
+// Store
+const {name, setName} = useStore();
+
+// API
+const {mutate, isLoading} = useMutation(phoneCheckFetcher);
+const {data} = useRegions();
+const {data: dataProfile, isSuccess: isSuccessProfile} = useProfile();
+
+
+```
+
