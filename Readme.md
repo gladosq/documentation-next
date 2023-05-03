@@ -1,24 +1,23 @@
-# Code Style JoyTech Frontend
-<img src="title-flex.jpg" width="100px" title="Title-flex">
+# Code style JoyTech Фронтенд. Критерии
+<img src="title-flex.jpg" width="70px" title="Title-flex">&nbsp;<img src="title-flex.jpg" width="70px" title="Title-flex">&nbsp;<img src="title-flex.jpg" width="70px" title="Title-flex">
 
 ## Нейминг
 
-1. Название переменных, параметров, свойств и методов начинается с заглавной буквы и записываются в нотации camelCase.
+:page_with_curl: Н1. Название переменных, параметров, свойств и методов начинается с заглавной буквы и записываются в нотации camelCase.
 
-2. Названия констант (постоянных значений) написаны заглавными буквами. Слова разделяются подчёркиваниями (UPPER_SNAKE_CASE):
+:page_with_curl: Н2. Названия констант (постоянных значений) написаны заглавными буквами. Слова разделяются подчёркиваниями (UPPER_SNAKE_CASE):
 ```jsx
 const MAX_HEIGHT = 400;
 const DEFAULT_TIME = 1000;
 ```
 
-3. Массивы названы существительными во множественном числе:
+:page_with_curl: Н3. Массивы названы существительными во множественном числе:
 ```jsx
 const frameworks = ['Next', 'Vue', 'JQuery'];
 const evenNumbers = [2, 10, 44];
 ```
 
-4. Название функции должно быть глаголом и соответствовать действию, которое она выполняет: 
-*Исключения - функции-обработчики/колбэки*
+:page_with_curl: Н4. Название функции должно быть глаголом и соответствовать действию, которое она выполняет *(исключения - функции-обработчики/колбэки)*: 
 ```jsx
 const getRandomNumber = () => Math.random();
 const printNames = (names) => {
@@ -28,12 +27,20 @@ const printNames = (names) => {
 };
 ```
 
-# ...
+:page_with_curl: Н5. Сокращённые названия переменных можно использовать, только если такое название широко распространено. Допустимые сокращения:
+  - evt или e для объектов Event и его производных (MouseEvent, KeyboardEvent и подобные)
+  - i, j, k, l, t для счётчика в цикле
+  - cb для единственного колбэка в параметрах функции
 
-### Структура react-компонентов .tsx
+## React
 
-1. Порядок написания компонентов сверху-вниз: фыв
-*стейты -> store -> api-запросы -> остальная логика -> содержимое компоненты*
+:page_with_curl: Р1. Структура каждого TSX-файла:
+  - Импорты
+  - Описание типа компонента (props)
+  - Код компонента
+  - Экспорты
+
+:page_with_curl: Р2. Порядок написания кода компоненты: *стейты &rarr; store &rarr; api-запросы &rarr; остальная логика &rarr; содержимое компоненты*
 ```jsx
 // Стейты
 const [open, setOpen] = useState(false);
@@ -52,8 +59,21 @@ const {data: dataProfile, isSuccess: isSuccessProfile} = useProfile();
 
 // Содержимое компоненты
 return (<MyComponent><MyComponent/>);
+```
 
+:page_with_curl: Р6. В компонентах отсутствует прямое обращение к DOM-элементам (например, document.querySelector). Если требуется получить доступ к DOM-элементу, применяются ссылки (ref).
 
+## Next
+
+:page_with_curl: С1. Чтение параметров из адресной строки проводится только через getServerSideProps:
+```jsx
+export async function getServerSideProps(params) {
+    return {props: {...params.query}}
+}
+
+const MyPage = ({id}) => {
+  console.log(id);
+}
 
 ```
 
