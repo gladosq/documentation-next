@@ -32,6 +32,55 @@ const printNames = (names) => {
   - i, j, k, l, t для счётчика в цикле
   - cb для единственного колбэка в параметрах функции
 
+:page_with_curl: Н6. Классы называть понятными именами
+
+## Стили
+
+:page_with_curl: С1. Перед открывающейся фигурной скобкой стоит пробел. После скобки запись идёт с новой строки. Во всех случаях в стилях использованы двойные кавычки.
+<table>
+  <tr>
+    <td>Хорошо</td>
+    <td>Плохо</td>
+  </tr>
+  <tr>
+    <td>
+      
+```scss
+.block {
+  background: url("images/cat.jpg");
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20;
+  color: #ff0000;
+}
+
+.title {
+  font-size: 10px;
+}
+```
+</td>
+<td>
+    
+```scss
+.block {
+  background-image: url(images/cat.jpg);
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20;
+  color: #ff0000;
+}
+.title {
+  font-size: 10px;
+}
+```
+
+</td>
+</tr>
+</table>
+
+:page_with_curl: С2. Ключевое слово !important не использовано для борьбы со специфичностью.
+
+
 ## React
 
 :page_with_curl: Р1. Структура каждого TSX-файла:
@@ -65,7 +114,7 @@ return (<MyComponent><MyComponent/>);
 
 ## Next
 
-:page_with_curl: С1. Чтение параметров из адресной строки проводится только через getServerSideProps:
+:page_with_curl: E1. Чтение параметров из адресной строки проводится только через getServerSideProps:
 ```jsx
 export async function getServerSideProps(params) {
   return {props: {...params.query}}
