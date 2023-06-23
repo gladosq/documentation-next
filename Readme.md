@@ -1,7 +1,7 @@
-# Фронтенд сode style JoyTech. Критерии
+# Фронтенд Code Style JoyTech. Критерии
 <img src="title-flex.jpg" width="70px" title="Title-flex">&nbsp;<img src="title-flex.jpg" width="70px" title="Title-flex">&nbsp;<img src="title-flex.jpg" width="70px" title="Title-flex">
 
-## Нейминг
+## Нейминг переменных/констант/функций
 
 :page_with_curl: Н1. Название переменных, параметров, свойств и методов записываются в нотации camelCase.
 
@@ -28,19 +28,46 @@ const printNames = (names) => {
 ```
 
 :page_with_curl: Н5. Сокращённые названия переменных можно использовать, только если такое название широко распространено. Допустимые сокращения:
-  - evt или e для объектов Event и его производных (MouseEvent, KeyboardEvent и подобные)
-  - i, j, k, l, t для счётчика в цикле
-  - cb для единственного колбэка в параметрах функции
+  - `evt` или `e` для объектов Event и его производных (MouseEvent, KeyboardEvent и подобные)
+  - `i`, `j`, `k`, `l`, `t` для счётчика в цикле
+  - `cb` для единственного колбэка в параметрах функции
+  - `btn` для `button`
 
-:page_with_curl: Н6. Классы называть понятными именами
-
+[Текст ссылки](#hmm)
 ## Стили
 
-:page_with_curl: С1. Перед открывающейся фигурной скобкой стоит пробел. После скобки запись идёт с новой строки. Во всех случаях в стилях использованы двойные кавычки.
+:page_with_curl: C1. В названиях классов использованы английские слова и термины. Отсутствует транслит и сокращения. Названия классов понятны и должны кратко описывать её предназначение. Популярные названия:
+```scss
+/*--- Блоки ---*/
+.block, .section, .sidebar, .content, .section, .card {}
+
+/*--- Обёртки ---*/
+.wrapper, .innerWrapper, .container, .innerContainer, .drawer {}
+
+/*--- Текст---*/
+.caption, .title, .subtitle, .text, .tag, .slogan, .lead, .description, .copyright {}
+
+/*--- Списки ---*/
+.list, .item {}
+
+/*--- Элементы управления ---*/
+.popup, .pagination, .modal, .tooltip, .breadcrumbs {}
+```
+
+:page_with_curl: C2. Стили текста задаются один раз в `body`, и они автоматом применятся ко всем элементам
+```scss
+body {
+  background: url("images/cat.jpg");
+  margin-bottom: 0;
+  font-size: 14px;
+}
+```
+
+:page_with_curl: С2. Перед открывающейся фигурной скобкой стоит пробел. После скобки запись идёт с новой строки. Во всех случаях в стилях использованы двойные кавычки.
 <table>
   <tr>
-    <td>Хорошо</td>
-    <td>Плохо</td>
+    <td>:white_check_mark: Good</td>
+    <td>:x: Bad</td>
   </tr>
   <tr>
     <td>
@@ -50,24 +77,21 @@ const printNames = (names) => {
   background: url("images/cat.jpg");
   margin-bottom: 0;
   font-size: 14px;
-  line-height: 20;
-  color: #ff0000;
 }
 
 .title {
   font-size: 10px;
 }
+
 ```
 </td>
 <td>
     
 ```scss
 .block {
-  background-image: url(images/cat.jpg);
+  background-image: url('images/cat.jpg');
   margin-bottom: 0;
   font-size: 14px;
-  line-height: 20;
-  color: #ff0000;
 }
 .title {
   font-size: 10px;
@@ -78,7 +102,7 @@ const printNames = (names) => {
 </tr>
 </table>
 
-:page_with_curl: С2. Ключевое слово !important не использовано для борьбы со специфичностью.
+:page_with_curl: С2. Ключевое слово `!important` не использовано для борьбы со специфичностью. Допустимо для переопределения библиотек.
 
 
 ## React
@@ -125,4 +149,4 @@ const MyPage = ({id}) => {
 }
 
 ```
-
+<a name="hmm"></a> 
