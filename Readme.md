@@ -1,7 +1,13 @@
 # Фронтенд Code Style JoyTech. Критерии
 <img src="title-flex.jpg" width="70px" title="Title-flex">&nbsp;<img src="title-flex.jpg" width="70px" title="Title-flex">&nbsp;<img src="title-flex.jpg" width="70px" title="Title-flex">
 
-## Нейминг переменных/констант/функций
+#### Содержание
+[Нейминг](#naming)  
+[Стили](#styles)  
+[React](#react)  
+[Next](#naming)  
+
+<a name="naming"><h2>Нейминг</h2></a>
 
 :page_with_curl: Н1. Название переменных, параметров, свойств и методов записываются в нотации camelCase.
 
@@ -33,8 +39,7 @@ const printNames = (names) => {
   - `cb` для единственного колбэка в параметрах функции
   - `btn` для `button`
 
-[Текст ссылки](#hmm)
-## Стили
+<a name="styles"><h2>Стили</h2></a>
 
 :page_with_curl: C1. В названиях классов использованы английские слова и термины. Отсутствует транслит и сокращения. Названия классов понятны и должны кратко описывать её предназначение. Популярные названия:
 ```scss
@@ -104,8 +109,19 @@ body {
 
 :page_with_curl: С2. Ключевое слово `!important` не использовано для борьбы со специфичностью. Допустимо для переопределения библиотек.
 
+:page_with_curl: С2. Для свойств, чьи величины измеряются в px, использовать миксин `fluid`. Миксины записываются первыми в списке стилей.
+```scss
+.wrapper {
+  @include fluid(gap, 26px, 30px);
+  @include fluid(margin-top, 60px, 80px);
+  @include fluid(margin-bottom, 60px, 80px);
+  display: flex;
+  justify-content: center;
+}
 
-## React
+```
+
+<a name="react"><h2>React</h2></a>
 
 :page_with_curl: Р1. Структура каждого TSX-файла:
   - Импорты
@@ -136,7 +152,7 @@ return (<MyComponent><MyComponent/>);
 
 :page_with_curl: Р6. В компонентах отсутствует прямое обращение к DOM-элементам (например, document.querySelector). Если требуется получить доступ к DOM-элементу, применяются ссылки (ref).
 
-## Next
+<a name="next"><h2>Next</h2></a>
 
 :page_with_curl: E1. Чтение параметров из адресной строки проводится только через getServerSideProps:
 ```jsx
@@ -149,4 +165,70 @@ const MyPage = ({id}) => {
 }
 
 ```
-<a name="hmm">asdasd</a> 
+
+:page_with_curl: E1. Правильное подключение шрифтов. Шрифты подключаются в теге `html` главного лейаута. Обращение в стилях через `var(--cera-pro-font)`
+```tsx
+// app/layout.tsx
+
+const CeraPro = localFont({
+  src: [
+    {
+      path: './../public/fonts/CeraPro-Regular.woff',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: './../public/fonts/CeraPro-Bold.woff',
+      weight: '700',
+      style: 'normal'
+    }
+  ],
+  variable: '--cera-pro-font'
+});
+
+const DaysOne = localFont({
+  src: [
+    {
+      path: './../public/fonts/DaysOne-Regular.woff',
+      weight: '400',
+      style: 'normal'
+    }
+  ],
+  variable: '--days-one-font'
+});
+
+export default function RootLayout({children}: { children: React.ReactNode }) {
+  return (
+    <html lang='ru' className={`${CeraPro.variable} ${DaysOne.variable}`}>
+      <body>
+        <main className={CeraPro.className}>
+          {children}
+        </main>
+      </body>
+    </html>
+  );
+}
+
+```
+```scss
+// Header.module.scss
+
+.title {
+  font-family: var(--cera-pro-font);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+```
+
+:page_with_curl: E1. Работа с серверным
+```jsx
+export async function getServerSideProps(params) {
+  return {props: {...params.query}}
+}
+
+const MyPage = ({id}) => {
+  console.log(id);
+}
+
+```
