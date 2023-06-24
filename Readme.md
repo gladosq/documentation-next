@@ -80,8 +80,8 @@ body {
 :page_with_curl: С2. Перед открывающейся фигурной скобкой стоит пробел. После скобки запись идёт с новой строки. Во всех случаях в стилях использованы двойные кавычки:
 <table>
   <tr>
-    <td>:white_check_mark: Good</td>
-    <td>:x: Bad</td>
+    <td>:white_check_mark: GOOD</td>
+    <td>:x: BAD</td>
   </tr>
   <tr>
     <td>
@@ -174,7 +174,7 @@ return (<MyComponent><MyComponent/>);
 
 <table>
   <tr>
-    <td>:white_check_mark: Good</td>
+    <td>:white_check_mark: GOOD</td>
   </tr>
   <tr>
     <td>
@@ -199,7 +199,7 @@ const buttonClasses = clsx(s.button, {
 </table>
 <table>
   <tr>
-    <td>:x: Bad</td>
+    <td>:x: BAD</td>
   </tr>
   <tr>
     <td>
