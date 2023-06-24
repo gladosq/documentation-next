@@ -5,9 +5,18 @@
 [Нейминг](#naming)  
 [Стили](#styles)  
 [React](#react)  
-[Next](#naming)  
+[Next](#naming)
 
 <a name="naming"><h2>Нейминг</h2></a>
+
+:page_with_curl: H1. Названия файлов шрифтов соответственно их кеглю
+```
+- public/
+--- fonts/
+----- gilroy-300.woff
+----- gilroy-400.woff
+----- montserrat-400.woff
+```
 
 :page_with_curl: Н1. Название переменных, параметров, свойств и методов записываются в нотации camelCase.
 
@@ -23,7 +32,7 @@ const frameworks = ['Next', 'Vue', 'JQuery'];
 const evenNumbers = [2, 10, 44];
 ```
 
-:page_with_curl: Н4. Название функции должно быть глаголом и соответствовать действию, которое она выполняет *(исключения - функции-обработчики/колбэки)*: 
+:page_with_curl: Н4. Название функции должно быть глаголом и соответствовать действию, которое она выполняет *(исключения - функции-обработчики/колбэки)*:
 ```jsx
 const getRandomNumber = () => Math.random();
 const printNames = (names) => {
@@ -34,10 +43,10 @@ const printNames = (names) => {
 ```
 
 :page_with_curl: Н5. Сокращённые названия переменных можно использовать, только если такое название широко распространено. Допустимые сокращения:
-  - `evt` или `e` для объектов Event и его производных (MouseEvent, KeyboardEvent и подобные)
-  - `i`, `j`, `k`, `l`, `t` для счётчика в цикле
-  - `cb` для единственного колбэка в параметрах функции
-  - `btn` для `button`
+- `evt` или `e` для объектов Event и его производных (MouseEvent, KeyboardEvent и подобные)
+- `i`, `j`, `k`, `l`, `t` для счётчика в цикле
+- `cb` для единственного колбэка в параметрах функции
+- `btn` для `button`
 
 <a name="styles"><h2>Стили</h2></a>
 
@@ -47,7 +56,7 @@ const printNames = (names) => {
 .block, .section, .sidebar, .content, .section, .card {}
 
 /*--- Обёртки ---*/
-.wrapper, .innerWrapper, .container, .innerContainer, .drawer {}
+.wrapper, .innerWrapper, .container, .innerContainer {}
 
 /*--- Текст---*/
 .caption, .title, .subtitle, .text, .tag, .slogan, .lead, .description, .copyright {}
@@ -59,7 +68,7 @@ const printNames = (names) => {
 .popup, .pagination, .modal, .tooltip, .breadcrumbs {}
 ```
 
-:page_with_curl: C2. Стили текста задаются один раз в `body`, и они автоматом применятся ко всем элементам
+:page_with_curl: C2. Стили текста задаются один раз в `body`, и они автоматом применятся ко всем элементам:
 ```scss
 body {
   background: url("images/cat.jpg");
@@ -68,7 +77,7 @@ body {
 }
 ```
 
-:page_with_curl: С2. Перед открывающейся фигурной скобкой стоит пробел. После скобки запись идёт с новой строки. Во всех случаях в стилях использованы двойные кавычки.
+:page_with_curl: С2. Перед открывающейся фигурной скобкой стоит пробел. После скобки запись идёт с новой строки. Во всех случаях в стилях использованы двойные кавычки:
 <table>
   <tr>
     <td>:white_check_mark: Good</td>
@@ -76,7 +85,7 @@ body {
   </tr>
   <tr>
     <td>
-      
+
 ```scss
 .block {
   background: url("images/cat.jpg");
@@ -87,11 +96,10 @@ body {
 .title {
   font-size: 10px;
 }
-
 ```
 </td>
 <td>
-    
+
 ```scss
 .block {
   background-image: url('images/cat.jpg');
@@ -101,8 +109,8 @@ body {
 .title {
   font-size: 10px;
 }
-```
 
+```
 </td>
 </tr>
 </table>
@@ -118,16 +126,26 @@ body {
   display: flex;
   justify-content: center;
 }
+```
 
+:page_with_curl: С3. Медиа запросы располагаются внутри селектора.
+```scss
+.block {
+  gap: 10px;
+  
+  @media (max-width: 1440px) {
+    gap: 30px;
+  }
+}
 ```
 
 <a name="react"><h2>React</h2></a>
 
 :page_with_curl: Р1. Структура каждого TSX-файла:
-  - Импорты
-  - Описание типа компонента (props)
-  - Код компонента
-  - Экспорты
+- Импорты
+- Описание типа компонента (props)
+- Код компонента
+- Экспорты
 
 :page_with_curl: Р2. Порядок написания кода компоненты: *стейты &rarr; store &rarr; api-запросы &rarr; остальная логика &rarr; содержимое компоненты*
 ```jsx
@@ -152,21 +170,56 @@ return (<MyComponent><MyComponent/>);
 
 :page_with_curl: Р6. В компонентах отсутствует прямое обращение к DOM-элементам (например, document.querySelector). Если требуется получить доступ к DOM-элементу, применяются ссылки (ref).
 
-<a name="next"><h2>Next</h2></a>
+:page_with_curl: P7. Использование шаблонных строк или тернарных операторов для указания нескольких модульных классов запрещено (или классов по условию). Вместо этого использовать библиотеку `clsx`.
 
-:page_with_curl: E1. Чтение параметров из адресной строки проводится только через getServerSideProps:
-```jsx
-export async function getServerSideProps(params) {
-  return {props: {...params.query}}
-}
+<table>
+  <tr>
+    <td>:white_check_mark: Good</td>
+  </tr>
+  <tr>
+    <td>
 
-const MyPage = ({id}) => {
-  console.log(id);
-}
+```tsx
+// Отдельно вынесенные классы
+const buttonClasses = clsx(s.button, {
+  [s.isGreen]: isGreen,
+  [s.isLoading]: isLoading,
+  [s.isDisabled]: isDisabled
+});
 
+// Сразу в className
+<button className={clsx(s.button, {[s.buttonActive]: active})}></button>
+
+// С одним условием
+<div className={clsx({[s.active]: count === 10})}></div>
+```
+</td>
+
+</tr>
+</table>
+<table>
+  <tr>
+    <td>:x: Bad</td>
+  </tr>
+  <tr>
+    <td>
+
+```tsx
+<Link className={props.white ? `${s.headerLogo} ${s.white}` : `${s.headerLogo}`}></Link>
+```
+</td>
+
+</tr>
+</table>
+
+:page_with_curl: P7. Для рендера контента с тегами (админка, RTE) использовать `dangerouslySetInnerHTML` вместо сторонних библиотек:
+```tsx
+<div className={s.pageBlock} dangerouslySetInnerHTML={{__html: text}} />
 ```
 
-:page_with_curl: E1. Правильное подключение шрифтов. Шрифты подключаются в теге `html` главного лейаута. Обращение в стилях через `var(--cera-pro-font)`
+<a name="next"><h2>Next</h2></a>
+
+:page_with_curl: E1. Правильное подключение шрифтов. Шрифты подключаются в теге `html` главного лейаута. Обращение в стилях через `var(--cera-pro-font)`:
 ```tsx
 // app/layout.tsx
 
@@ -208,7 +261,6 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
     </html>
   );
 }
-
 ```
 ```scss
 // Header.module.scss
@@ -218,17 +270,4 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
   font-weight: 400;
   font-size: 14px;
 }
-
-```
-
-:page_with_curl: E1. Работа с серверным
-```jsx
-export async function getServerSideProps(params) {
-  return {props: {...params.query}}
-}
-
-const MyPage = ({id}) => {
-  console.log(id);
-}
-
 ```
